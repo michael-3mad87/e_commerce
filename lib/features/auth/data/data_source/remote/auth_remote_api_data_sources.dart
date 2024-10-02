@@ -12,7 +12,7 @@ import 'package:injectable/injectable.dart';
 @Singleton(as: AuthRemoteDataSources)
 class AuthRemoteApiDataSources implements AuthRemoteDataSources {
   final Dio _dio;
- const AuthRemoteApiDataSources(this._dio);
+  const AuthRemoteApiDataSources(this._dio);
   @override
   Future<RegisterResponse> register(RegisterRequest request) async {
     try {

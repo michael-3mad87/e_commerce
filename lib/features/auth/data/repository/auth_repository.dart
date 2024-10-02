@@ -11,7 +11,7 @@ import 'package:ecommerce/features/auth/domain/repositories/auth_repositories.da
 
 import 'package:injectable/injectable.dart';
 
-@Singleton(as:AuthRepository)
+@Singleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSources _remoteDataSources;
   final AuthLocalDataSources _localDataSources;

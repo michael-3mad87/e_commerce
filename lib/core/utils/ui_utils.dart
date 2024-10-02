@@ -25,8 +25,8 @@ class UiUtils {
 
   static void showMessage(String message) {
     Fluttertoast.showToast(
-      msg : message ,
-      toastLength:Toast.LENGTH_SHORT,
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
     );
   }
 }

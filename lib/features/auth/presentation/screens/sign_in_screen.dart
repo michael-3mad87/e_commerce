@@ -1,4 +1,3 @@
-
 import 'package:ecommerce/core/resources/assets_manager.dart';
 import 'package:ecommerce/core/resources/color_manager.dart';
 import 'package:ecommerce/core/resources/font_manager.dart';
@@ -33,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: ColorManager.primary,
       body: SafeArea(
         child: Padding(
-          padding:  EdgeInsets.all(Insets.s20.sp),
+          padding: EdgeInsets.all(Insets.s20.sp),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -87,12 +86,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       const Spacer(),
                       GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            'Forget password?',
-                            style: getMediumStyle(color: ColorManager.white)
-                                .copyWith(fontSize: FontSize.s18.sp),
-                          ),),
+                        onTap: () {},
+                        child: Text(
+                          'Forget password?',
+                          style: getMediumStyle(color: ColorManager.white)
+                              .copyWith(fontSize: FontSize.s18.sp),
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -118,8 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           label: 'Login',
                           backgroundColor: ColorManager.white,
                           textStyle: getBoldStyle(
-                              color: ColorManager.primary,
-                              fontSize: Sizes.s18,),
+                            color: ColorManager.primary,
+                            fontSize: Sizes.s18,
+                          ),
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               BlocProvider.of<AuthCubit>(context).login(

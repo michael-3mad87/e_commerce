@@ -1,10 +1,16 @@
 import 'dart:async';
 
+import 'package:ecommerce/core/di/service_locator.dart';
 import 'package:ecommerce/core/resources/assets_manager.dart';
+import 'package:ecommerce/core/utils/ui_utils.dart';
+import 'package:ecommerce/core/widgets/error_indicator.dart';
+import 'package:ecommerce/core/widgets/loading_indicator.dart';
+import 'package:ecommerce/features/home/presentation/cubit/home_cubit.dart';
 import 'package:ecommerce/features/home/presentation/widgets/announcements_section.dart';
 import 'package:ecommerce/features/home/presentation/widgets/category_item.dart';
 import 'package:ecommerce/features/home/presentation/widgets/custom_section_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTab extends StatefulWidget {
@@ -27,6 +33,7 @@ class _HomeTabState extends State<HomeTab> {
   void initState() {
     super.initState();
     _startImageSwitching();
+   
   }
 
   @override
@@ -47,12 +54,29 @@ class _HomeTabState extends State<HomeTab> {
               ),
               SizedBox(
                 height: 270.h,
-                child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, __) => const CategoryItem(),
-                  itemCount: 20,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                child: BlocProvider(
+                  create: (_) => serviceLocator.get<HomeCubit>(),
+                  child: BlocBuilder<HomeCubit, HomeState>(
+                    builder: (context, state) {
+                      if (state is HomeLoading) {
+                        return const LoadingIndicator();
+                      } else if (state is HomeSuccess) {
+                        return GridView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (_, index) =>
+                              CategoryItem(state.categories[index]),
+                          itemCount: state.categories.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                          ),
+                        );
+                      } else if (state is HomeError) {
+                        return ErrorIndicator(message: state.message);
+                      } else {
+                        return const SizedBox();
+                      }
+                    },
                   ),
                 ),
               ),

@@ -12,7 +12,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final Login _login;
   final Register _register;
-  AuthCubit(this._login , this._register) : super(AuthInitial());
+  AuthCubit(this._login, this._register) : super(AuthInitial());
 
   Future<void> register(RegisterRequest request) async {
     emit(RegisterLoading());

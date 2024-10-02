@@ -4,9 +4,9 @@ class UserModel {
   final String role;
 
   const UserModel({
-   required this.name,
-   required this.email,
-   required this.role,
+    required this.name,
+    required this.email,
+    required this.role,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(

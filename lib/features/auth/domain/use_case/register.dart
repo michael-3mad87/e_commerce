@@ -4,9 +4,11 @@ import 'package:ecommerce/features/auth/data/models/register_request.dart';
 import 'package:ecommerce/features/auth/domain/entities/user.dart';
 import 'package:ecommerce/features/auth/domain/repositories/auth_repositories.dart';
 import 'package:injectable/injectable.dart';
+
 @singleton
 class Register {
   final AuthRepository _authRepository;
   const Register(this._authRepository);
- Future<Either<Failure, User>> call(RegisterRequest request) => _authRepository.register(request);
+  Future<Either<Failure, User>> call(RegisterRequest request) =>
+      _authRepository.register(request);
 }
