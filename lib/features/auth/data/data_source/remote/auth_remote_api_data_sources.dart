@@ -10,13 +10,13 @@ import 'package:ecommerce/features/auth/data/models/register_response.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: AuthRemoteDataSources)
-class AuthRemoteApiDataSources extends AuthRemoteDataSources {
-  final Dio dio;
-  AuthRemoteApiDataSources(this.dio);
+class AuthRemoteApiDataSources implements AuthRemoteDataSources {
+  final Dio _dio;
+ const AuthRemoteApiDataSources(this._dio);
   @override
   Future<RegisterResponse> register(RegisterRequest request) async {
     try {
-      final response = await dio.post(
+      final response = await _dio.post(
         APIConstants.registerEndPoint,
         data: request.toJSon(),
       );
@@ -34,7 +34,7 @@ class AuthRemoteApiDataSources extends AuthRemoteDataSources {
   @override
   Future<LoginResponse> login(LoginRequest request) async {
     try {
-      final response = await dio.post(
+      final response = await _dio.post(
         APIConstants.loginEndPoint,
         data: request.toJSon(),
       );

@@ -1,4 +1,3 @@
-
 import 'package:ecommerce/core/resources/assets_manager.dart';
 import 'package:ecommerce/core/resources/color_manager.dart';
 import 'package:ecommerce/core/resources/styles_manager.dart';
@@ -14,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -105,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           } else if (state is RegisterSuccess) {
                             UiUtils.hideLoading(context);
                             Navigator.of(context)
-                                .pushReplacementNamed(Routes.register);
+                                .pushReplacementNamed(Routes.login);
                           } else if (state is RegisterError) {
                             UiUtils.hideLoading(context);
                             UiUtils.showMessage(state.errorMessage);
@@ -115,8 +113,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           label: 'Sign Up',
                           backgroundColor: ColorManager.white,
                           textStyle: getBoldStyle(
-                              color: ColorManager.primary,
-                              fontSize: Sizes.s20,),
+                            color: ColorManager.primary,
+                            fontSize: Sizes.s20,
+                          ),
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               BlocProvider.of<AuthCubit>(context).register(
@@ -128,6 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               );
                             }
+                           
                           },
                         ),
                       ),

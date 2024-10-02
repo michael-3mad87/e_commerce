@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       GestureDetector(
                         onTap: () =>
-                            Navigator.pushNamed(context, Routes.login),
+                            Navigator.pushNamed(context, Routes.register),
                         child: Text(
                           'Create Account',
                           style: getSemiBoldStyle(color: ColorManager.white)
