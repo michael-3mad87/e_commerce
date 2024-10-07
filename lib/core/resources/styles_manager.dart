@@ -67,7 +67,7 @@ TextStyle getBoldStyle({
 TextStyle getTextWithLine() => TextStyle(
       color: ColorManager.primary,
       fontSize: FontSize.s12,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w300,
       decoration: TextDecoration.lineThrough,
       decorationColor: ColorManager.primary,
     );

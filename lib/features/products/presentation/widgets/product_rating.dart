@@ -53,11 +53,7 @@ class ProductRating extends StatelessWidget {
                 .copyWith(fontSize: 14.sp),
           ),
         ),
-        ProductCounter(
-          onAddClicked: (_) {},
-          onRemoveClicked: (_) {},
-          counter: 1,
-        ),
+        
       ],
     );
   }

@@ -8,5 +8,6 @@ import 'package:injectable/injectable.dart';
 class GetCategories {
   final HomeRepository homeRepository;
   GetCategories(this.homeRepository);
- Future<Either<Failure, List<Category>>> call() => homeRepository.getCategory();
+  Future<Either<Failure, List<Category>>> call() =>
+      homeRepository.getCategory();
 }

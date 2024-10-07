@@ -12,9 +12,8 @@ class HomeCubit extends Cubit<HomeState> {
   final GetCategories _getCategories;
   HomeCubit(
     this._getCategories,
-
   ) : super(HomeInitial()) {
-    getCategories() ;
+    getCategories();
   }
   Future<void> getCategories() async {
     final result = await _getCategories();

@@ -13,6 +13,6 @@ final class HomeSuccess extends HomeState {
 }
 
 final class HomeError extends HomeState {
- final String message;
+  final String message;
   HomeError(this.message);
 }

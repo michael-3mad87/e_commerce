@@ -11,17 +11,17 @@ class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.register:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+        return MaterialPageRoute(builder: (_) => const RegisterScreen() ,);
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen(),settings: settings);
       case Routes.products:
-        return MaterialPageRoute(builder: (_) => const ProductsScreen());
+        return MaterialPageRoute(builder: (_) => const ProductsScreen(),settings: settings);
       case Routes.productDetails:
-        return MaterialPageRoute(builder: (_) => const ProductDetails());
+        return MaterialPageRoute(builder: (_) => const ProductDetails(), settings: settings);
       case Routes.cart:
-        return MaterialPageRoute(builder: (_) => const CartScreen());
+        return MaterialPageRoute(builder: (_) => const CartScreen(), settings: settings);
       default:
         return _undefinedRoute();
     }

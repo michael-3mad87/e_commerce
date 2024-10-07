@@ -16,7 +16,7 @@ class ErrorIndicator extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           const Icon(
+            const Icon(
               Icons.error_outline,
               color: Colors.redAccent,
               size: 80.0,
@@ -25,18 +25,17 @@ class ErrorIndicator extends StatelessWidget {
             Text(
               'Oops!',
               style: getMediumStyle(
-                    color: ColorManager.error,
-                    
-                  ),
+                color: ColorManager.error,
+              ),
             ),
             const SizedBox(height: 8.0),
             Text(
               message,
               textAlign: TextAlign.center,
-              style:getMediumStyle(
-                    fontSize: FontSize.s16,
-                    color:ColorManager.black,
-                  ),
+              style: getMediumStyle(
+                fontSize: FontSize.s16,
+                color: ColorManager.black,
+              ),
             ),
           ],
         ),
