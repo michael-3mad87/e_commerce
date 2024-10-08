@@ -26,6 +26,23 @@ import 'package:ecommerce/features/auth/domain/use_case/login.dart' as _i280;
 import 'package:ecommerce/features/auth/domain/use_case/register.dart' as _i2;
 import 'package:ecommerce/features/auth/presentation/cubit/auth_cubit.dart'
     as _i350;
+import 'package:ecommerce/features/cart/data/data_source/remote/cart_api_remote_data_source.dart'
+    as _i490;
+import 'package:ecommerce/features/cart/data/data_source/remote/cart_remote_data_source.dart'
+    as _i984;
+import 'package:ecommerce/features/cart/data/repositories/cart_repositories_impl.dart'
+    as _i117;
+import 'package:ecommerce/features/cart/domain/repositories/cart_repositories.dart'
+    as _i188;
+import 'package:ecommerce/features/cart/domain/use_case/add_to_cart.dart'
+    as _i290;
+import 'package:ecommerce/features/cart/domain/use_case/delete_from_cart.dart'
+    as _i979;
+import 'package:ecommerce/features/cart/domain/use_case/get_cart.dart' as _i2;
+import 'package:ecommerce/features/cart/domain/use_case/update_cart.dart'
+    as _i807;
+import 'package:ecommerce/features/cart/presentation/cubit/cart_cubit.dart'
+    as _i769;
 import 'package:ecommerce/features/home/data/data_source/remote/home_remote_api_data_sources.dart'
     as _i713;
 import 'package:ecommerce/features/home/data/data_source/remote/home_remote_data_source.dart'
@@ -71,12 +88,16 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio);
+    gh.lazySingleton<_i984.CartRemoteDataSource>(
+        () => _i490.CartApiRemoteDataSource(gh<_i361.Dio>()));
     gh.singleton<_i1064.AuthRemoteDataSources>(
         () => _i1000.AuthRemoteApiDataSources(gh<_i361.Dio>()));
     gh.lazySingleton<_i58.HomeRemoteDataSource>(
         () => _i713.HomeRemoteApiDataSources(gh<_i361.Dio>()));
     gh.lazySingleton<_i825.ProductsRemoteDataSources>(
         () => _i585.ProductsApiDataSources(gh<_i361.Dio>()));
+    gh.lazySingleton<_i188.CartRepositories>(
+        () => _i117.CartRepositoriesImpl(gh<_i984.CartRemoteDataSource>()));
     gh.singleton<_i279.AuthLocalDataSources>(
         () => _i403.AuthPrefDataSources(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i142.HomeRepository>(
@@ -85,11 +106,25 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i491.GetCategories(gh<_i142.HomeRepository>()));
     gh.lazySingleton<_i669.HomeCubit>(
         () => _i669.HomeCubit(gh<_i491.GetCategories>()));
+    gh.lazySingleton<_i290.AddToCart>(
+        () => _i290.AddToCart(gh<_i188.CartRepositories>()));
+    gh.lazySingleton<_i979.DeleteFromCart>(
+        () => _i979.DeleteFromCart(gh<_i188.CartRepositories>()));
+    gh.lazySingleton<_i2.GetCart>(
+        () => _i2.GetCart(gh<_i188.CartRepositories>()));
+    gh.lazySingleton<_i807.UpdateCart>(
+        () => _i807.UpdateCart(gh<_i188.CartRepositories>()));
     gh.lazySingleton<_i647.ProductsRepository>(() =>
         _i418.ProductsRepositoryImpl(gh<_i825.ProductsRemoteDataSources>()));
     gh.singleton<_i967.AuthRepository>(() => _i181.AuthRepositoryImpl(
           gh<_i1064.AuthRemoteDataSources>(),
           gh<_i279.AuthLocalDataSources>(),
+        ));
+    gh.factory<_i769.CartCubit>(() => _i769.CartCubit(
+          gh<_i290.AddToCart>(),
+          gh<_i2.GetCart>(),
+          gh<_i807.UpdateCart>(),
+          gh<_i979.DeleteFromCart>(),
         ));
     gh.singleton<_i280.Login>(() => _i280.Login(gh<_i967.AuthRepository>()));
     gh.singleton<_i2.Register>(() => _i2.Register(gh<_i967.AuthRepository>()));

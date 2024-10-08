@@ -5,10 +5,10 @@ class BrandModel {
   final String image;
 
   const BrandModel({
-   required this.id,
-   required this.name,
-   required this.slug,
-   required this.image,
+    required this.id,
+    required this.name,
+    required this.slug,
+    required this.image,
   });
 
   factory BrandModel.fromJson(Map<String, dynamic> json) => BrandModel(

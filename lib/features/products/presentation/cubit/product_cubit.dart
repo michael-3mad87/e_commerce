@@ -20,5 +20,6 @@ class ProductCubit extends Cubit<ProductState> {
       (products) => emit(ProductSuccess(products)),
     );
   }
+
   void onQuantityChanged() => emit(QuantityOnChanged());
 }

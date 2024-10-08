@@ -1,6 +1,5 @@
+import 'package:ecommerce/core/models/category_model.dart';
 import 'package:ecommerce/core/models/metadata.dart';
-
-import '../../../../core/models/category_model.dart';
 
 
 class CategoryResponse {

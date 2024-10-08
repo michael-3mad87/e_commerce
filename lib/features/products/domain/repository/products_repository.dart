@@ -3,5 +3,5 @@ import 'package:ecommerce/core/error/failure.dart';
 import 'package:ecommerce/features/products/domain/entities/products_entities.dart';
 
 abstract class ProductsRepository {
-  Future<Either<Failure, List<Product>>> getProducts(String ?categoryId);
+  Future<Either<Failure, List<Product>>> getProducts(String? categoryId);
 }

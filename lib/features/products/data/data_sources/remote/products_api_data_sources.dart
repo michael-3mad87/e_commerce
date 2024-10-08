@@ -20,7 +20,6 @@ class ProductsApiDataSources implements ProductsRemoteDataSources {
       );
       return ProductsResponse.fromJson(response.data);
     } catch (e) {
-     
       String? message;
       if (e is DioException) {
         message = e.response?.data['message'];

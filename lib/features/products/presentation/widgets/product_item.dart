@@ -3,8 +3,10 @@ import 'package:ecommerce/core/resources/color_manager.dart';
 import 'package:ecommerce/core/resources/styles_manager.dart';
 import 'package:ecommerce/core/routes/routes.dart';
 import 'package:ecommerce/core/widgets/heart_button.dart';
+import 'package:ecommerce/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:ecommerce/features/products/domain/entities/products_entities.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItem extends StatefulWidget {
@@ -24,7 +26,7 @@ class _ProductItemState extends State<ProductItem> {
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(
         Routes.productDetails,
-        arguments:widget.product,
+        arguments: widget.product,
       ),
       child: Container(
         width: screenSize.width * 0.4,
@@ -131,7 +133,11 @@ class _ProductItemState extends State<ProductItem> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              context
+                                  .read<CartCubit>()
+                                  .addToCart(widget.product.id);
+                            },
                             child: Container(
                               height: screenSize.height * 0.027,
                               width: screenSize.width * 0.08,

@@ -12,9 +12,9 @@ class ProductsRepositoryImpl implements ProductsRepository {
   ProductsRemoteDataSources productsRemoteDataSources;
   ProductsRepositoryImpl(this.productsRemoteDataSources);
   @override
-  Future<Either<Failure, List<Product>>> getProducts(String ?categoryId) async {
+  Future<Either<Failure, List<Product>>> getProducts(String? categoryId) async {
     try {
-      final response = await productsRemoteDataSources.getProduct( categoryId);
+      final response = await productsRemoteDataSources.getProduct(categoryId);
       return Right(
         response.products
             .map(

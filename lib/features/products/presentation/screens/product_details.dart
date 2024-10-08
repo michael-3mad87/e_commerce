@@ -60,7 +60,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsetsDirectional.only(
-                start: 16.w, end: 16.w, bottom: 50.h),
+                start: 16.w, end: 16.w, bottom: 50.h,),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -133,7 +133,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             return Text(
                               'EGP ${product.price * _quantity}',
                               style: getMediumStyle(
-                                      color: ColorManager.appBarTitle)
+                                      color: ColorManager.appBarTitle,)
                                   .copyWith(fontSize: 18.sp),
                             );
                           },

@@ -12,7 +12,8 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(Routes.products , arguments: category.id),
+      onTap: () => Navigator.of(context)
+          .pushNamed(Routes.products, arguments: category.id),
       child: Column(
         children: [
           ClipRRect(
@@ -26,6 +27,7 @@ class CategoryItem extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: category.image,
                 fit: BoxFit.fill,
+                errorWidget: (context, url, error) => Image.asset('assets/images/women.png'),
               ),
             ),
           ),
