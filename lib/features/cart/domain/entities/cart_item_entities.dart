@@ -1,15 +1,15 @@
 import 'package:ecommerce/features/cart/domain/entities/cart_product_entities.dart';
 
 class CartItemData {
-  final int count;
   final String id;
-  final CartProduct product;
+  final int count;
   final int price;
+  final CartProduct product;
 
   const CartItemData({
-   required this.count,
-   required this.id,
-   required this.product,
-   required this.price,
+    required this.id,
+    required this.count,
+    required this.price,
+    required this.product,
   });
 }

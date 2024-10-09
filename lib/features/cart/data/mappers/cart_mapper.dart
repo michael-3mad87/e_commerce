@@ -9,6 +9,6 @@ extension CartMapper on CartModel {
               (cartItemModel) => cartItemModel.toEntity,
             )
             .toList(),
-        totalCartPrice: totalCartPrice,
+        totalPrice: totalPrice,
       );
 }

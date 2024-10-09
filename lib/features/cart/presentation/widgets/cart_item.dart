@@ -7,7 +7,9 @@ import 'package:ecommerce/core/resources/values_manager.dart';
 import 'package:ecommerce/core/routes/routes.dart';
 import 'package:ecommerce/core/widgets/product_counter.dart';
 import 'package:ecommerce/features/cart/domain/entities/cart_item_entities.dart';
+import 'package:ecommerce/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartItem extends StatelessWidget {
@@ -20,6 +22,7 @@ class CartItem extends StatelessWidget {
         MediaQuery.of(context).orientation == Orientation.portrait;
     final width = MediaQuery.sizeOf(context).width;
     final height = MediaQuery.sizeOf(context).height;
+    final cartCubit = context.read<CartCubit>();
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(Routes.productDetails),
       child: Container(
@@ -38,7 +41,7 @@ class CartItem extends StatelessWidget {
                     Border.all(color: ColorManager.primary.withOpacity(0.3)),
               ),
               child: CachedNetworkImage(
-                imageUrl: cartItemData.product.imageCover,
+                imageUrl: cartItemData.product.imageCoverURL,
                 fit: BoxFit.cover,
                 height: isPortrait ? height * 0.142 : height * 0.23,
                 width: isPortrait ? width * 0.29 : 165.w,
@@ -69,7 +72,8 @@ class CartItem extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: (){},
+                          onTap: () =>
+                              cartCubit.deleteFromCart(cartItemData.product.id),
                           child: Image.asset(
                             IconsAssets.delete,
                             color: ColorManager.text,
@@ -79,13 +83,12 @@ class CartItem extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    
                     const Spacer(),
                     Row(
                       children: [
                         Expanded(
                           child: Text(
-                            'EGP ${cartItemData.price}',
+                            'EGP ${cartItemData.price * cartItemData.count}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: getBoldStyle(
@@ -95,9 +98,15 @@ class CartItem extends StatelessWidget {
                           ),
                         ),
                         ProductCounter(
-                          onIncrement: (_){},
                           initialValue: cartItemData.count,
-                          onDecrement: (_){},
+                          onIncrement: (quantity) => cartCubit.updateCart(
+                            cartItemData.product.id,
+                            quantity,
+                          ),
+                          onDecrement: (quantity) => cartCubit.updateCart(
+                            cartItemData.product.id,
+                            quantity,
+                          ),
                         ),
                       ],
                     ),

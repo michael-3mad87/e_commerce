@@ -7,16 +7,16 @@ class CartResponse {
   final CartModel cart;
 
   const CartResponse({
-   required this.status,
-   required this.numOfCartItems,
-   required this.cartId,
-   required this.cart,
+    required this.status,
+    required this.numOfCartItems,
+    required this.cartId,
+    required this.cart,
   });
 
   factory CartResponse.fromJson(Map<String, dynamic> json) => CartResponse(
         status: json['status'] as String,
         numOfCartItems: json['numOfCartItems'] as int,
         cartId: json['cartId'] as String?,
-        cart:  CartModel.fromJson(json['data'] as Map<String, dynamic>),
+        cart: CartModel.fromJson(json['data'] as Map<String, dynamic>),
       );
 }

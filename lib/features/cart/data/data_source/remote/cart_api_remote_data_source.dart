@@ -33,6 +33,7 @@ class CartApiRemoteDataSource implements CartRemoteDataSource {
       final response = await dio.get(
         APIConstants.cartEndPoint,
       );
+
       return CartResponse.fromJson(response.data);
     } catch (e) {
       String? message;
@@ -52,12 +53,14 @@ class CartApiRemoteDataSource implements CartRemoteDataSource {
           'count': quantity,
         },
       );
+
       return CartResponse.fromJson(response.data);
     } catch (e) {
       String? message;
       if (e is DioException) {
         message = e.response?.data['message'];
       }
+
       throw RemoteException(message ?? 'failed to update Cart');
     }
   }
@@ -65,7 +68,8 @@ class CartApiRemoteDataSource implements CartRemoteDataSource {
   @override
   Future<CartResponse> deleteFromCart(String productId) async {
     try {
-      final response = await dio.put('${APIConstants.cartEndPoint}/$productId');
+      final response =
+          await dio.delete('${APIConstants.cartEndPoint}/$productId');
       return CartResponse.fromJson(response.data);
     } catch (e) {
       String? message;

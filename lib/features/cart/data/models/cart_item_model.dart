@@ -3,23 +3,24 @@
 import 'package:ecommerce/features/cart/data/models/cart_product_model.dart';
 
 class CartItemModel {
-  final int count;
   final String id;
-  final CartProductModel product;
+  final int count;
   final int price;
+  final CartProductModel product;
 
   const CartItemModel({
-   required this.count,
-   required this.id,
-   required this.product,
-   required this.price,
+    required this.id,
+    required this.count,
+    required this.price,
+    required this.product,
   });
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) => CartItemModel(
-        count: json['count'] as int,
         id: json['_id'] as String,
-        product:
-            CartProductModel.fromJson(json['product'] as Map<String, dynamic>),
+        count: json['count'] as int,
         price: json['price'] as int,
+        product: CartProductModel.fromJson(
+          json['product'] as Map<String, dynamic>,
+        ),
       );
 }

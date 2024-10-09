@@ -37,7 +37,7 @@ class ECommerceApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: child,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.login,
+          initialRoute: Routes.home,
         ),
       ),
     );

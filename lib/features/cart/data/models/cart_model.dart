@@ -7,7 +7,7 @@ class CartModel {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final int? v;
-  final int totalCartPrice;
+  final int totalPrice;
 
   const CartModel({
     required this.id,
@@ -16,7 +16,7 @@ class CartModel {
     required this.createdAt,
     required this.updatedAt,
     required this.v,
-    required this.totalCartPrice,
+    required this.totalPrice,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
@@ -32,6 +32,8 @@ class CartModel {
             ? null
             : DateTime.parse(json['updatedAt'] as String),
         v: json['__v'] as int?,
-        totalCartPrice: json['totalCartPrice'] as int,
+        totalPrice:  json['totalCartPrice'] != null && json['totalCartPrice'] is num
+            ? (json['totalCartPrice'] as num).toInt() 
+            : 0,
       );
 }
